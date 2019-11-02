@@ -10,8 +10,13 @@ script:
 
 after_success:
   - docker build -t aliaksandrbiarozka/multi-nginx-proxy ./nginx-proxy
-  - docker build -t aliaksandrbiarozka/multi-react-clien ./react-client
+  - docker build -t aliaksandrbiarozka/multi-react-client ./react-client
   - docker build -t aliaksandrbiarozka/multi-server ./server 
   - docker build -t aliaksandrbiarozka/multi-worker ./worker
+  # login to the docker cli
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # take those images and put to the docker hub
-  
+  - docker push aliaksandrbiarozka/multi-nginx-proxy
+  - docker push aliaksandrbiarozka/multi-react-client
+  - docker push aliaksandrbiarozka/multi-worker
+  - docker push aliaksandrbiarozka/multi-server
