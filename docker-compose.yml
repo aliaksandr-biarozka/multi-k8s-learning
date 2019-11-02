@@ -1,0 +1,53 @@
+version: '3'
+services: 
+  postgres:
+    image: 'postgres:latest'
+  redis:
+    image: 'redis:latest'
+  nginx-proxy:
+    build: 
+      dockerfile: Dockerfile.dev
+      context: ./nginx-proxy
+    ports: 
+      - 4000:80
+    restart: always
+  api:
+    build: 
+      dockerfile: Dockerfile.dev
+      context: ./server
+    ports: 
+      - 5000:80
+    volumes: 
+      - ./server/bin/Debug/netcoreapp3.0:/app
+    environment: 
+      - RedisConnection__Host=redis
+      - RedisConnection__Port=6379
+      - Connection__Host=postgres
+      - Connection__Password=postgres_password
+      - Connection__User=postgres
+      - Connection__Database=postgres
+      - Connection__Port=5432
+      - ASPNETCORE_URLS=http://+:5000
+    depends_on: 
+      - postgres
+      - redis
+  worker:
+    build: 
+      dockerfile: Dockerfile.dev
+      context: ./worker
+    volumes: 
+      - ./worker/bin/Debug/netcoreapp3.0:/app
+    environment: 
+      - RedisConnection__Host=redis
+      - RedisConnection__Port=6379
+    depends_on: 
+      - redis
+  client:
+    build: 
+      dockerfile: Dockerfile.dev
+      context: ./react-client
+    volumes: 
+      - /app/node_modules
+      - ./react-client:/app
+    depends_on: 
+      - api

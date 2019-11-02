@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{7F0A40FF-D4AF-43DC-8AF3-63EA6D1A4913}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/NumbersController.cs">
+    <Files>
+      <File FileName="appsettings.json" Line="17" Column="19" />
+      <File FileName="Startup.cs" Line="38" Column="14" />
+      <File FileName="Program.cs" Line="27" Column="1" />
+      <File FileName="appsettings.Development.json" Line="20" Column="4" />
+      <File FileName="Connection.cs" Line="17" Column="1" />
+      <File FileName="Controllers/NumbersController.cs" Line="38" Column="1" />
+      <File FileName="Dockerfile.dev" Line="11" Column="46" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="backend-server" expanded="True">
+            <Node name="backend-server" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="NumbersController.cs" selected="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.backend-server PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/aliaksandrbiarozka/DockerLearning/docker-multiple-app/server/Controllers/NumbersController.cs" relfile="Controllers/NumbersController.cs" line="32" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

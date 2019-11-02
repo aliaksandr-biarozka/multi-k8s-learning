@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t aliaksandrbiarozka/react-client-test -f ./react-client/Dockerfile.dev ./react-client
+
+script:
+  - docker run -e CI=true aliaksandrbiarozka/react-client-test npm test
+
+after_success:
+  - docker build -t aliaksandrbiarozka/multi-nginx-proxy ./nginx-proxy
+  - docker build -t aliaksandrbiarozka/multi-react-clien ./react-client
+  - docker build -t aliaksandrbiarozka/multi-server ./server 
+  - docker build -t aliaksandrbiarozka/multi-worker ./worker
