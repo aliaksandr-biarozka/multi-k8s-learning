@@ -13,3 +13,5 @@ after_success:
   - docker build -t aliaksandrbiarozka/multi-react-clien ./react-client
   - docker build -t aliaksandrbiarozka/multi-server ./server 
   - docker build -t aliaksandrbiarozka/multi-worker ./worker
+  # take those images and put to the docker hub
+  
