@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: worker
+  template:
+    metadata:
+      labels:
+        component: worker
+    spec:
+      containers:
+        - name: worker
+          image: aliaksandrbiarozka/multi-worker
+          env:
+            - name: RedisConnection__Host
+              value: redis-cluster-ip
+            - name: RedisConnection__Port
+              value: '6379'

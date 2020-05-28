@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: server
+  template:
+    metadata:
+      labels:
+        component: server
+    spec:
+      containers:
+        - name: server
+          image: aliaksandrbiarozka/multi-server
+          ports:
+            - containerPort: 5000 
+          env:
+            - name: RedisConnection__Host
+              value: redis-cluster-ip
+            - name: RedisConnection__Port
+              value: '6379'
+            - name: Connection__Host
+              value: postgres-cluster-ip
+            - name: Connection__Port
+              value: '5432'
+            - name: Connection__User
+              value: postgres
+            - name: Connection__Database
+              value: postgres
+            - name: ASPNETCORE_URLS
+              value: http://+:5000
+            - name: Connection__Password
+              valueFrom:
+                secretKeyRef:
+                  name: pgpassword-secret
+                  key: PG_PASSWORD
+    

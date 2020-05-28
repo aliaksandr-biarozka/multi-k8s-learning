@@ -44,7 +44,7 @@ services:
       - redis
   client:
     build: 
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       context: ./react-client
     volumes: 
       - /app/node_modules
