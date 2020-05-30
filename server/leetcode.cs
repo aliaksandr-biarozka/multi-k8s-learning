@@ -56,24 +56,47 @@ public class Solution {
     }
 
     public int GetLongestSubStringLength(string s) {
-        int maxLength = 0, i = 0, lastUniqueLetter = 0;;
+        int maxLength = 0, i = 0, lastUniqueLetter = 0;
         var wordLetters = new Dictionary<char, int>();
 
         while(i < s.Length) {
             if(!wordLetters.Contains(s[i])) {
                 wordLetters.Add(s[i], i++);
             } else {
-                maxLength = Math.Max(maxLength, wordLetters.Count - lastUniqueLetter);
+                maxLength = Math.Max(maxLength, i - lastUniqueLetter);
 
                 lastUniqueLetter = wordLetters[s[i]] + 1;
                 wordLetters[s[i]] = i;
             }
         }
         
-        if(maxLength < wordLetters.Count) {
+        if(lastUniqueLetter == 0) {
             maxLength = wordLetters.Count;
         }
 
         return maxLength;
+    }
+
+    public string LongestPalindrome(string s) {
+        if(s.Length <= 2) return s;
+
+        int i = 1, startPosition = 0, endPosition = 0;
+        while(i < s.Length) {
+            int j = i, step = 0;
+            while(j - step > 0 && j + step < s.Length - 1) {
+                if(s[j - step - 1] == s[j + step + 1]) {
+                    step++;
+                } else {
+                    break;
+                }
+            }
+
+            if(step != 0 && (endPosition - startPosition) < 2 * step) {
+                startPosition = i - step;
+                endPosition = i + step;
+            }
+        }
+
+        return s.Substring(startPosition, endPosition - startPosition + 1);
     }
 }
