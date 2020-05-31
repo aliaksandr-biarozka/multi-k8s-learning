@@ -1,4 +1,4 @@
-docker build -t aliaksandrbiarozka/multi-react-client:latest - t aliaksandrbiarozka/multi-react-client:$SHA -f ./react-client/Dockerfile ./react-client
+docker build -t aliaksandrbiarozka/multi-react-client:latest -t aliaksandrbiarozka/multi-react-client:$SHA -f ./react-client/Dockerfile ./react-client
 docker build -t aliaksandrbiarozka/multi-server:latest -t aliaksandrbiarozka/multi-server:$SHA -f ./server/Dockerfile ./server
 docker build -t aliaksandrbiarozka/multi-worker:latest -t aliaksandrbiarozka/multi-worker:$SHA -f ./worker/Dockerfile ./worker
 
